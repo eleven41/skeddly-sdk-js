@@ -1,0 +1,32 @@
+version: 1.0.{build}
+environment:
+  npm_auth_token:
+    secure: lMX+Kk4GzVVo9hkeDM6Mz483AJev1YqHG/kMHA5Muz264Ecf9+EvDerN8kmdUxh0
+install:
+- ps: >-
+    Install-Product node $env:STABLE
+
+
+    npm install
+
+
+    "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" | out-file "$env:userprofile\.npmrc" -Encoding ASCII
+
+    npm whoami
+build_script:
+- cmd: >-
+    npm --no-git-tag-version version %APPVEYOR_BUILD_VERSION%
+
+    npm pack
+test_script:
+- cmd: >-
+    node --version
+
+    npm --version
+
+
+    npm test
+artifacts:
+- path: skeddly-sdk-*.tgz
+deploy_script:
+- cmd: npm publish
