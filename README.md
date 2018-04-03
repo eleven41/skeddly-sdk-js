@@ -2,6 +2,8 @@
 
 [![NPM](https://nodei.co/npm/skeddly-sdk.svg?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/skeddly-sdk/)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/7kyj1hay3x46hb61?svg=true)](https://ci.appveyor.com/project/eleven41/skeddly-sdk-js)
+
 The official Skeddly SDK for JavaScript, available for Node.js backends.
 
 ## Installing
