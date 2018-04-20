@@ -6,17 +6,18 @@ var nock = require('nock');
 
 var Skeddly = require('../../index');
 
-describe('#modifyCredential', function() {
+describe('#createCredential', function() {
     var client = null;
 
     beforeEach(function() {
         nock('https://api.skeddly.com/api/')
-            .put('/credentials/cred-12345678', {
+            .post('/credentials/', {
                 amazonIamAccessKey: {
                     accessKeyId: "AK123456789012345678",
                     secretAccessKey: "1234567890123456789012345678901234567890"
                 },
                 cloudProviderSubTypeId: "amazon-standard",
+                credentialType: "amazon-access-key",
                 name: "My Credential"
             })
             .reply(200, {
@@ -27,14 +28,14 @@ describe('#modifyCredential', function() {
         client = Skeddly.createClient({});
     });
 
-    it('should put to /credentials/cred-12345678', function() {
-        return client.modifyCredential({
+    it('should post to /credentials/', function() {
+        return client.createCredentialAsync({
                 amazonIamAccessKey: {
                     accessKeyId: "AK123456789012345678",
                     secretAccessKey: "1234567890123456789012345678901234567890"
                 },
-                credentialId: "cred-12345678",
                 cloudProviderSubTypeId: "amazon-standard",
+                credentialType: "amazon-access-key",
                 name: "My Credential"
             })
             .then(function(results) {

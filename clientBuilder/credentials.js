@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(client) {
-    client.createCredential = function(request) {
+    client.createCredentialAsync = function(request) {
         if (request === undefined) {
             throw "request must be specified";
         }
@@ -14,7 +14,7 @@ module.exports = function(client) {
             name: request.name
         };
 
-        return this.post("/credentials/", null, body)
+        return this.postAsync("/credentials/", null, body)
             .then(function(response){
                 return {
                     credential: response
@@ -22,7 +22,7 @@ module.exports = function(client) {
             });
     };
 
-    client.modifyCredential = function(request) {
+    client.modifyCredentialAsync = function(request) {
         if (request === undefined) {
             throw "request must be specified";
         }
@@ -38,7 +38,7 @@ module.exports = function(client) {
             name: request.name
         };
 
-        return this.put("/credentials/" + request.credentialId, null, body)
+        return this.putAsync("/credentials/" + request.credentialId, null, body)
             .then(function(response){
                 return {
                     credential: response
@@ -46,7 +46,7 @@ module.exports = function(client) {
             });
     };
 
-    client.deleteCredential = function(request) {
+    client.deleteCredentialAsync = function(request) {
         if (request === undefined) {
             throw "request must be specified";
         }
@@ -55,10 +55,10 @@ module.exports = function(client) {
             throw "request.credentialId must be specified";
         }
 
-        return this.delete("/credentials/" + request.credentialId, null);
+        return this.deleteAsync("/credentials/" + request.credentialId, null);
     };
 
-    client.generateAmazonIamRoleExternalId = function(request) {
-        return this.get("/credentials/generateAmazonIamRoleExternalId");
+    client.generateAmazonIamRoleExternalIdAsync = function(request) {
+        return this.getAsync("/credentials/generateAmazonIamRoleExternalId");
     };
 };

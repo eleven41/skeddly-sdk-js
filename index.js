@@ -81,7 +81,7 @@ module.exports = {
                 );
             },
 
-            get: function(path, params) {
+            getAsync: function(path, params) {
                 return this.instance
                     .get(path, {
                         params: params
@@ -92,7 +92,7 @@ module.exports = {
                     .catch(this.handleError);
             },
 
-            post: function(path, params, data) {
+            postAsync: function(path, params, data) {
                 return this.instance
                     .post(path, data, {
                         params: params
@@ -103,7 +103,7 @@ module.exports = {
                     .catch(this.handleError);
             },
 
-            put: function(path, params, data) {
+            putAsync: function(path, params, data) {
                 return this.instance
                     .put(path, data, {
                         params: params
@@ -114,7 +114,7 @@ module.exports = {
                     .catch(this.handleError);
             },
 
-            delete: function(path, params) {
+            deleteAsync: function(path, params) {
                 return this.instance
                     .delete(path, {
                         params: params

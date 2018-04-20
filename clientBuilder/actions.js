@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(client) {
-    client.listActions = function(request) {
+    client.listActionsAsync = function(request) {
         var params = {};
 
         if (request != null) {
@@ -20,6 +20,6 @@ module.exports = function(client) {
             }
         }
 
-        return this.get("/actions/", params);
+        return this.getAsync("/actions/", params);
     };
 }

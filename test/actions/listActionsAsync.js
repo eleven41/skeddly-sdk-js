@@ -36,7 +36,7 @@ describe('#listActions', function() {
     });
 
     it('should get from /actions', function() {
-        return client.listActions()
+        return client.listActionsAsync()
             .then(function(results) {
                 expect(results).to.be.an('array');
                 expect(results.length).to.equal(2);        
@@ -44,7 +44,7 @@ describe('#listActions', function() {
     });
 
     it('should get from /actions?filter.actionTypes=amazon-create-ebs-snapshots', function() {
-        return client.listActions({
+        return client.listActionsAsync({
                 filter: {
                     actionType: 'amazon-create-ebs-snapshots'
                 }

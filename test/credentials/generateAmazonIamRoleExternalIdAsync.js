@@ -22,7 +22,7 @@ describe('#generateAmazonIamRoleExternalId', function() {
     });
 
     it('should get from /credentials/generateAmazonIamRoleExternalId', function() {
-        return client.generateAmazonIamRoleExternalId()
+        return client.generateAmazonIamRoleExternalIdAsync()
             .then(function(results) {
                 expect(results.externalId).to.equal('skeddly-123456')        
                 expect(results.expiryDate).to.equal('2018-04-02T00:00:00Z');    

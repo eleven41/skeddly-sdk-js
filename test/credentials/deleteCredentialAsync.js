@@ -19,7 +19,7 @@ describe('#deleteCredential', function() {
     });
 
     it('should delete from /credentials/cred-12345678', function() {
-        return client.deleteCredential({
+        return client.deleteCredentialAsync({
                 credentialId: "cred-12345678"
             })
             .then(function(results) {
