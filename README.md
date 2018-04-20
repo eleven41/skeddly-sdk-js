@@ -1,4 +1,4 @@
-# Skeddly SDK for Javascript
+# Skeddly SDK for JavaScript
 
 [![NPM](https://nodei.co/npm/skeddly-sdk.svg?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/skeddly-sdk/)
 

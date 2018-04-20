@@ -4,14 +4,22 @@ var expect = require('chai').expect;
 var assert = require('chai').assert;
 var nock = require('nock');
 
-var Skeddly = require('../index');
+var Skeddly = require('../../index');
 
 describe('#createCredential', function() {
     var client = null;
 
     beforeEach(function() {
         nock('https://api.skeddly.com/api/')
-            .post('/credentials/')
+            .post('/credentials/', {
+                amazonIamAccessKey: {
+                    accessKeyId: "AK123456789012345678",
+                    secretAccessKey: "1234567890123456789012345678901234567890"
+                },
+                cloudProviderSubTypeId: "amazon-standard",
+                credentialType: "amazon-access-key",
+                name: "My Credential"
+            })
             .reply(200, {
                 "credentialId": "cred-12345678"
             });
@@ -22,11 +30,13 @@ describe('#createCredential', function() {
 
     it('should post to /credentials/', function() {
         return client.createCredential({
+                amazonIamAccessKey: {
+                    accessKeyId: "AK123456789012345678",
+                    secretAccessKey: "1234567890123456789012345678901234567890"
+                },
                 cloudProviderSubTypeId: "amazon-standard",
                 credentialType: "amazon-access-key",
-                name: "My Credential",
-                accessKeyId: "AK123456789012345678",
-                secretAccessKey: "1234567890123456789012345678901234567890"
+                name: "My Credential"
             })
             .then(function(results) {
                 expect(results.credential.credentialId).to.equal('cred-12345678');

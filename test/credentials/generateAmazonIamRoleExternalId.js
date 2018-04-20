@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 var assert = require('chai').assert;
 var nock = require('nock');
 
-var Skeddly = require('../index');
+var Skeddly = require('../../index');
 
 describe('#generateAmazonIamRoleExternalId', function() {
     var client = null;

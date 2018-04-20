@@ -1,11 +1,11 @@
 {
   "name": "skeddly-sdk",
   "version": "0.1.0",
-  "description": "Skeddly SDK for Javascript",
+  "description": "Skeddly SDK for JavaScript",
   "homepage": "https://www.skeddly.com/",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --recursive --reporter spec"
   },
   "author": "Eleven41 Software Inc.",
   "repository": { 

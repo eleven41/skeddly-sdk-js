@@ -3,6 +3,9 @@
 var axios = require('axios');
 var Qs = require('qs');
 
+var addActions = require('./clientBuilder/actions');
+var addCredentials = require('./clientBuilder/credentials');
+
 class SkeddlyWebError extends Error {
     constructor(statusCode, errorCode, message) {
         super(message);
@@ -110,95 +113,11 @@ module.exports = {
                         return response.data;
                     })
                     .catch(this.handleError);
-            },
-
-            createCredential: function(request) {
-                if (request === undefined) {
-                    throw "request must be specified";
-                }
-
-                var body = {
-                    accessKeyId: request.accessKeyId,
-                    cloudProviderSubTypeId: request.cloudProviderSubTypeId,
-                    credentialType: request.credentialType,
-                    externalId: request.externalId,
-                    name: request.name,
-                    roleArn: request.roleArn,
-                    secretAccessKey: request.secretAccessKey
-                };
-
-                return this.post("/credentials/", null, body)
-                    .then(function(response){
-                        return {
-                            credential: response
-                        };
-                    });
-            },
-
-            modifyCredential: function(request) {
-                if (request === undefined) {
-                    throw "request must be specified";
-                }
-
-                if (request.credentialId === undefined) {
-                    throw "request.credentialId must be specified";
-                }
-
-                var body = {
-                    accessKeyId: request.accessKeyId,
-                    cloudProviderSubTypeId: request.cloudProviderSubTypeId,
-                    externalId: request.externalId,
-                    name: request.name,
-                    roleArn: request.roleArn,
-                    secretAccessKey: request.secretAccessKey
-                };
-
-                return this.put("/credentials/" + request.credentialId, null, body)
-                    .then(function(response){
-                        return {
-                            credential: response
-                        };
-                    });
-            },
-
-            deleteCredential: function(request) {
-                if (request === undefined) {
-                    throw "request must be specified";
-                }
-
-                if (request.credentialId === undefined) {
-                    throw "request.credentialId must be specified";
-                }
-
-                return this.delete("/credentials/" + request.credentialId, null);
-            },
-
-            generateAmazonIamRoleExternalId: function(request) {
-                return this.get("/credentials/generateAmazonIamRoleExternalId");
-            },
-
-            listActions: function(request) {
-                var params = {};
-
-                if (request != null) {
-                    if (request.filter != null) {
-                        params.filter = {};
-
-                        if (request.filter.actionTypes != null) {
-                            params.filter.actionTypes = request.filter.actionTypes.join(',');
-                        } else if (request.filter.actionType != null) {
-                            params.filter.actionTypes = request.filter.actionType;
-                        }
-                    }
-
-                    if (request.include != null) {
-                        params.include = request.include.join(',');
-                    }
-                }
-
-                return this.get("/actions/", params);
             }
         };
+
+        addActions(result);
+        addCredentials(result);
 
         return result;
     }
