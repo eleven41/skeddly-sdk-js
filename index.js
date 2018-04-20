@@ -15,6 +15,14 @@ class SkeddlyWebError extends Error {
     }
 };
 
+class SkeddlyAuthorizationError extends Error {
+    constructor(statusCode, message) {
+        super(message);
+
+        this.statusCode = statusCode;
+    }
+};
+
 class ParameterValidationFailedError extends SkeddlyWebError {
     constructor(message, modelState) {
         super(403, "ParameterValidationFailed", message);
@@ -36,7 +44,7 @@ module.exports = {
         var instance = axios.create({
             baseURL: options.endpoint || 'https://api.skeddly.com/api/',
             timeout: 60000,
-            headers: { 'Authorization': 'AccessKey ' + options.accessKey },
+            headers: { 'Authorization': 'AccessKey ' + options.accessKeyId },
 
             paramsSerializer: function(params) {
                 
@@ -63,6 +71,8 @@ module.exports = {
                         throw new ParameterValidationFailedError(error.response.data.message, 
                             error.response.data.modelState);
                     }
+                } else if (error.response.status == 401) {
+                    throw new SkeddlyAuthorizationError(error.response.status, error.response.statusText);
                 }
 
                 throw new SkeddlyWebError(error.response.status,

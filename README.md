@@ -33,6 +33,6 @@ then create your Skeddly client:
 
 ```javascript
 var client = Skeddly.createClient({
-    accessKey: '12345678901234567890123456789012'
+    accessKeyId: 'sk_12345678901234567890123456789012'
 });
 ```
