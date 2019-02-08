@@ -1,7 +1,7 @@
 version: 1.0.{build}
 environment:
   npm_auth_token:
-    secure: KmGCxTofeoh15UJ0SlPXexXcPWxFNMYQaMVanbSvhY/oFrZGmow84e0bgfE9syZj
+    secure: 51vUqemirykPBLPWrLbAiKD6PAiGOsyl8QbsQue9HCWgzWpn9D+XGN23sZrfBmdg
 install:
 - ps: >-
     Install-Product node $env:STABLE
@@ -9,11 +9,9 @@ install:
 
     npm install
 
-    Write-Host $env:npm_auth_token
 
     "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" | out-file "$env:userprofile\.npmrc" -Encoding ASCII
-    
-    type "$env:userprofile\.npmrc"
+
 
     npm whoami
 build_script:
