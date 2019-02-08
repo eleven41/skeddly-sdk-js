@@ -9,10 +9,8 @@ install:
 
     npm install
 
-
-    "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" | out-file "$env:userprofile\.npmrc" -Encoding ASCII
-
-
+    Set-Content -Value "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" -Path "$env:userprofile\.npmrc"
+    
     npm whoami
 build_script:
 - cmd: >-
