@@ -1,7 +1,7 @@
 version: 1.0.{build}
 environment:
   npm_auth_token:
-    secure: lMX+Kk4GzVVo9hkeDM6Mz483AJev1YqHG/kMHA5Muz264Ecf9+EvDerN8kmdUxh0
+    secure: KmGCxTofeoh15UJ0SlPXexXcPWxFNMYQaMVanbSvhY/oFrZGmow84e0bgfE9syZj
 install:
 - ps: >-
     Install-Product node $env:STABLE
