@@ -42,7 +42,7 @@ module.exports = {
         }
 
         var instance = axios.create({
-            baseURL: options.endpoint || 'https://api.skeddly.com/api/',
+            baseURL: options.endPoint || 'https://api.skeddly.com/api/',
             timeout: 60000,
             headers: { 'Authorization': 'AccessKey ' + options.accessKeyId },
 
