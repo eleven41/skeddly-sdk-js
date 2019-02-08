@@ -9,6 +9,8 @@ install:
 
     npm install
 
+    Write-host $env:npm_auth_token
+
     Set-Content -Value "//registry.npmjs.org/:_authToken=$env:npm_auth_token`n" -Path "$env:userprofile\.npmrc"
 
     Write-Host "$env:userprofile\.npmrc"
