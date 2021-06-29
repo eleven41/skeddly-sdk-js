@@ -2,7 +2,7 @@ version: 1.0.{build}
 skip_tags: true
 environment:
   npm_auth_token:
-    secure: lgYqgSI0Bw9ntfScT91VDJE3ZkGUVjr/ahmAAZ19KpnR8KMhpHEXuOM4nkJzXcxF
+    secure: GZ42D+k/3zSBFKMdRl+EyjcIk8+b9k6IbU5Hf2Z4bV2lUg9CokQmdp3D1dRNR2Zc
 install:
 - ps: >-
     Install-Product node $env:STABLE

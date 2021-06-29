@@ -23,7 +23,7 @@ describe('#deleteCredential', function() {
                 credentialId: "cred-12345678"
             })
             .then(function(results) {
-                expect(results).to.equal('');
+                expect(results).to.equal(null);
             });
     });
 
