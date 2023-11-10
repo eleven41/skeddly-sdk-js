@@ -28,5 +28,15 @@ test_script:
     npm test
 artifacts:
 - path: skeddly-sdk-*.tgz
-deploy_script:
-- cmd: npm publish
+
+# here we are going to override common configuration
+for:
+
+# override settings for `master` branch
+- 
+    branches:
+        only:
+        - master
+
+    deploy_script:
+    - cmd: npm publish
